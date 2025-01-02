@@ -1,6 +1,7 @@
 import { validationResult } from "express-validator";
 import { createUser } from "../services/user.service.js";
 import userModel from "../models/user.model.js";
+import blacklistTokenModel from "../models/blacklistToken.model.js";
 
 export const registerUser = async (req, res) => {
   try {
@@ -53,6 +54,7 @@ export const loginUser = async (req, res, next) => {
 
     // 🔑 Generate JWT Token
     const token = user.generateAuthToken();
+    res.cookie("token", token);
 
     // 🎯 Return Success Response
     res.status(200).json({
@@ -66,6 +68,27 @@ export const loginUser = async (req, res, next) => {
     });
   } catch (error) {
     console.error("Error in loginUser:", error.message);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const getUserProfile = async (req, res, next) => {};
+
+export const logoutUser = async (req, res, next) => {
+  try {
+    // Get Token from Request
+    const token = req.cookies.token || req.headers.authorization.split(" ")[1];
+
+    // Add Token to Blacklist
+    await blacklistTokenModel.create({ token });
+
+    // Clear Token Cookie
+    res.clearCookie("token");
+
+    // Return Success Response
+    res.status(200).json({ message: "User logged out successfully" });
+  } catch (error) {
+    console.error("Error in logoutUser:", error.message);
     res.status(500).json({ message: error.message });
   }
 };
