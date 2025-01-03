@@ -72,7 +72,7 @@ export const loginCaptain = async (req, res, next) => {
       captain,
     });
   } catch (error) {
-    console.error("Error in loginCaptain:", error.message);
     res.status(500).json({ message: error.message });
   }
 };
+

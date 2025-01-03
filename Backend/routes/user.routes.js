@@ -41,12 +41,11 @@ router.get("/profile", authUser, (req, res) => {
 
 router.get("/logout", authUser, async (req, res) => {
   try {
-    const token = req.cookies.token;
+    const token = req.cookies.token || req.headers.authorization?.split(" ")[1];
     await blacklistTokenModel.create({ token });
     res.clearCookie("token");
     res.status(200).json({ message: "User logged out successfully" });
   } catch (error) {
-    console.error("Error in logout:", error.message);
     res.status(500).json({ message: error.message });
   }
 });
