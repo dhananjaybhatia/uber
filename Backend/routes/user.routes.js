@@ -40,15 +40,15 @@ router.get("/profile", authUser, (req, res) => {
 });
 
 router.get("/logout", authUser, async (req, res) => {
-    try {
-        const token = req.cookies.token;
-        await blacklistTokenModel.create({ token });
-        res.clearCookie("token");
-        res.status(200).json({ message: "User logged out successfully" });
-    } catch (error) {
-        console.error("Error in logout:", error.message);
-        res.status(500).json({ message: error.message });
-    }
+  try {
+    const token = req.cookies.token;
+    await blacklistTokenModel.create({ token });
+    res.clearCookie("token");
+    res.status(200).json({ message: "User logged out successfully" });
+  } catch (error) {
+    console.error("Error in logout:", error.message);
+    res.status(500).json({ message: error.message });
+  }
 });
 
 export default router;

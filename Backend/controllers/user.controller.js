@@ -57,7 +57,7 @@ export const loginUser = async (req, res, next) => {
     res.cookie("token", token);
 
     // 🎯 Return Success Response
-    res.status(200).json({
+    return res.status(200).json({
       message: "User logged in successfully",
       token,
       user: {
@@ -86,7 +86,7 @@ export const logoutUser = async (req, res, next) => {
     res.clearCookie("token");
 
     // Return Success Response
-    res.status(200).json({ message: "User logged out successfully" });
+    return res.status(200).json({ message: "User logged out successfully" });
   } catch (error) {
     console.error("Error in logoutUser:", error.message);
     res.status(500).json({ message: error.message });
