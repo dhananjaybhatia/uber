@@ -38,7 +38,7 @@ export default function UserLogin() {
     if (response.status === 201) {
       const data = response.data;
       setUserData(data.user);
-      localStorage.setItem("token", data.token);
+      localStorage.setItem("token", data.user.token);
       navigate("/home");
     }
 

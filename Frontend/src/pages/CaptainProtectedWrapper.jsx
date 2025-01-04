@@ -1,12 +1,12 @@
 import { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { UserDataContext } from "../Context/UserContext";
+import { CaptainDataContext } from "../Context/CaptainContext";
 
 // eslint-disable-next-line react/prop-types
-export default function UserProtectedWrapper({ children }) {
+export default function CaptainProtectedWrapper({ children }) {
   const [isLoading, setIsLoading] = useState(true);
-  const { setUserData } = useContext(UserDataContext);
+  const { setCaptainData } = useContext(CaptainDataContext);
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
@@ -16,33 +16,34 @@ export default function UserProtectedWrapper({ children }) {
     const validateToken = async () => {
       try {
         if (!token) {
-          navigate("/login");
+          navigate("/captain-login");
           return;
         }
 
-        // 🛡️ Validate Token with Backend
-        const response = await axios.get(`${VITE_BASE_URL}/users/profile`, {
+        // 🛡️ Validate Token with Backend 
+        const response = await axios.get(`${VITE_BASE_URL}/captains/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
         if (response.status === 200) {
-          setUserData(response.data.user); // Populate context with user data
+          setCaptainData(response.data.user); // Populate context with user data
         } else {
           localStorage.removeItem("token");
-          navigate("/login");
+          navigate("/captain-home");
         }
       } catch (error) {
+        console.error("Token validation failed:", error.message);
         localStorage.removeItem("token");
-        navigate("/login");
+        navigate("/captain-login");
       } finally {
         setIsLoading(false);
       }
     };
 
     validateToken();
-  }, [token, navigate, setUserData, VITE_BASE_URL]);
+  }, [token, navigate, setCaptainData, VITE_BASE_URL]);
 
   // Show loading spinner while validating token
   if (isLoading) {

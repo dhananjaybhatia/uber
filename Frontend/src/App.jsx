@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import UserProtectedWrapper from "./pages/UserProtectedWrapper";
 import UserLogout from "./pages/UserLogout";
 import CaptainHome from "./pages/CaptainHome";
+import CaptainProtectedWrapper from "./pages/CaptainProtectedWrapper";
 
 export default function App() {
   return (
@@ -22,7 +23,15 @@ export default function App() {
             </UserProtectedWrapper>
           }
         />
-        <Route path="/captain-home" element={<CaptainHome />} />
+        <Route
+          path="/captain-home"
+          element={
+            <CaptainProtectedWrapper>
+              <CaptainHome />
+            </CaptainProtectedWrapper>
+          }
+        />
+        {/* <Route path="/captain-home" element={<CaptainHome />} /> */}
         <Route path="/login" element={<UserLogin />} />
         <Route path="/signup" element={<UserSignup />} />
         <Route path="/captain-login" element={<CaptainLogin />} />

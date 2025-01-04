@@ -76,3 +76,4 @@ export const loginCaptain = async (req, res, next) => {
   }
 };
 
+export const getCaptainProfile = async (req, res, next) => {};

@@ -50,8 +50,9 @@ export default function UserLogin() {
     );
     if (response.status === 201) {
       const data = response.data;
+      console.log(data);
       setCaptainData(data.captain);
-      localStorage.setItem("token", data.token);
+      localStorage.setItem("token", data.captain.token);
       navigate("/captain-home");
     }
     // Clear form fields
