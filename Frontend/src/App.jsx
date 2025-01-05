@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Start from "./pages/Start";
+import Riding from "./pages/Riding";
 import UserLogin from "./pages/UserLogin";
 import UserSignup from "./pages/UserSignup";
 import CaptainLogin from "./pages/CaptainLogin";
@@ -32,6 +33,7 @@ export default function App() {
           }
         />
         {/* <Route path="/captain-home" element={<CaptainHome />} /> */}
+        <Route path="/riding" element={<Riding />} />
         <Route path="/login" element={<UserLogin />} />
         <Route path="/signup" element={<UserSignup />} />
         <Route path="/captain-login" element={<CaptainLogin />} />
