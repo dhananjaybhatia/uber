@@ -20,7 +20,7 @@ export default function CaptainProtectedWrapper({ children }) {
           return;
         }
 
-        // 🛡️ Validate Token with Backend 
+        // 🛡️ Validate Token with Backend
         const response = await axios.get(`${VITE_BASE_URL}/captains/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,

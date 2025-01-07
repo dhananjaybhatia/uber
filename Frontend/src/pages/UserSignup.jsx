@@ -8,7 +8,7 @@ import SubHeading from "../components/SubHeading";
 import { Link, useNavigate } from "react-router-dom";
 import { UserDataContext } from "../Context/UserContext";
 
-export default function UserLogin() {
+export default function UserSignup() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");

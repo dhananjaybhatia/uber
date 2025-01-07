@@ -11,8 +11,7 @@ export const registerCaptain = async (req, res) => {
     }
 
     // Extract Data from Request
-    const { fullName, email, password, vehicle} =
-      req.body;
+    const { fullName, email, password, vehicle } = req.body;
 
     // Destructure fullName
     const { firstName, lastName } = fullName;
@@ -69,6 +68,7 @@ export const loginCaptain = async (req, res, next) => {
     // 🎯 Return Success Response
     return res.status(200).json({
       message: "Captain logged in successfully",
+      token,
       captain,
     });
   } catch (error) {

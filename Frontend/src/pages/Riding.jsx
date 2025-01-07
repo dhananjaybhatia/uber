@@ -60,7 +60,10 @@ export default function Riding() {
           </div>
         </div>
 
-        <Button label={"Make a Payment"} className="mb-2 bg-green-600" />
+        <Button
+          label={"Make a Payment"}
+          className="mb-2  bg-green-600 hover:bg-green-700"
+        />
       </div>
     </div>
   );

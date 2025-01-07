@@ -34,6 +34,7 @@ export default function UserProtectedWrapper({ children }) {
           navigate("/login");
         }
       } catch (error) {
+        console.log(error);
         localStorage.removeItem("token");
         navigate("/login");
       } finally {

@@ -9,7 +9,7 @@ import { CaptainDataContext } from "../Context/CaptainContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function UserLogin() {
+export default function CaptainSignup() {
   // State for form fields
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");

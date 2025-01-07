@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { CaptainDataContext } from "../Context/CaptainContext";
 import axios from "axios";
 
-export default function UserLogin() {
+export default function CaptainLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // Accessing Captain Context
@@ -20,7 +20,7 @@ export default function UserLogin() {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    const captain = {
+    const captainData = {
       email,
       password,
     };
@@ -28,11 +28,12 @@ export default function UserLogin() {
     try {
       const response = await axios.post(
         `${VITE_BASE_URL}/captains/login`,
-        captain
+        captainData
       );
 
       if (response.status === 200) {
         const data = response.data;
+        console.log("Response Data:", response.data);
         setCaptainData(data.captain);
         localStorage.setItem("token", data.token);
         navigate("/captain-home");

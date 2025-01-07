@@ -7,33 +7,42 @@ import Button from "./Button";
 
 import Heading from "./Heading";
 
-export default function SelectRide({
-  confirmRidePanelRef,
-  setConfirmRidePanel,
-  setVehicleFoundPanel
+export default function RidePopup({
+  ridePopupPanelRef,
+  setRidePopupPanel,
+  setConfirmRidePopupPanel,
 }) {
   return (
     <div
-      ref={confirmRidePanelRef}
-      className="fixed z-10 w-full translate-y-full bg-white  p-3 py-6 bottom-0"
+      ref={ridePopupPanelRef}
+      className="fixed z-10 w-full bg-white translate-y-full p-3 py-6 bottom-0"
     >
       <ExpandMoreIcon
-        onClick={() => setConfirmRidePanel(false)} // Close the panel
+        onClick={() => {
+          setRidePopupPanel(false);
+        }}
         className="absolute top-2 right-2 text-gray-600"
       />
       <Heading
-        className="font-semibold ml-4 mb-4"
-        label={"Confirm your ride"}
+        className="font-semibold text-center mb-4"
+        label={"New Ride Available"}
       />
-      <div className="flex flex-col gap-3 justify-between items-center  ">
-        <div>
-          <img
-            className="w-full object-cover"
-            src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_368,w_552/v1548646935/assets/64/93c255-87c8-4e2e-9429-cf709bf1b838/original/3.png"
-          />
+      <div className="flex flex-col gap-3 justify-between items-center p-3 ">
+        <div className="w-full">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3  px-2">
+              <img
+                className="h-16 object-cover"
+                src="https://comicvine.gamespot.com/a/uploads/scale_small/11/114183/6665931-bart.png"
+              />
+              <h2 className="font-medium text-lg">Simson Musk</h2>
+            </div>
+            <h5 className="font-semibold text-lg text-gray-800">2.2 Km</h5>
+          </div>
         </div>
+
         <div className="w-full ">
-          <div className="flex items-center gap-5 p-3 border-b-2">
+          <div className="flex items-center gap-5 p-2  border-b-2">
             <MyLocationIcon className="text-gray-500" />
             <div className="">
               <h3 className="text-xl font-semibold">10/5 Holly Street</h3>
@@ -68,12 +77,20 @@ export default function SelectRide({
           </div>
         </div>
         <Button
-          label={"Confirm"}
+          label={"Accept"}
+          type={"button"}
           onClick={() => {
-            setVehicleFoundPanel(true);
-            setConfirmRidePanel(false);
+            setConfirmRidePopupPanel(true);
           }}
-          className="bg-green-700 hover:bg-green-800 text-white"
+          className="bg-green-600 hover:bg-green-700 text-white -mb-4"
+        />
+        <Button
+          label={"Ignore"}
+          onClick={() => {
+            setRidePopupPanel(false);
+          }}
+          type={"button"}
+          className="bg-gray-300 !text-black hover:bg-gray-400"
         />
       </div>{" "}
     </div>

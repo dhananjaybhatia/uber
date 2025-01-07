@@ -44,6 +44,7 @@ export default function UserLogin() {
 
       if (response.status === 200) {
         const data = response.data;
+        console.log("Response Data:", response.data);
         setUserData(data.user);
         localStorage.setItem("token", data.token);
         navigate("/home");
