@@ -1,17 +1,24 @@
 /* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import Button from "./Button";
-
+import InputBox from "./InputBox";
 import Heading from "./Heading";
+import { useState } from "react";
 
 export default function ConfirmRidePopup({
-    confirmRidePopupRef,
-    setConfirmRidePopupPanel,
-    setRidePopupPanel
+  confirmRidePopupRef,
+  setConfirmRidePopupPanel,
+  setRidePopupPanel,
 }) {
+  const [otp, setOTP] = useState("");
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+  };
   return (
     <div
       ref={confirmRidePopupRef}
@@ -19,7 +26,7 @@ export default function ConfirmRidePopup({
     >
       <ExpandMoreIcon
         onClick={() => {
-            setConfirmRidePopupPanel(false);
+          setConfirmRidePopupPanel(false);
         }}
         className="absolute top-2 right-2 text-gray-600"
       />
@@ -29,7 +36,7 @@ export default function ConfirmRidePopup({
       />
       <div className="flex flex-col gap-3 justify-between items-center p-3 ">
         <div className="w-full">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between border-2 border-yellow-300 rounded-lg p-3">
             <div className="flex items-center gap-3  px-2">
               <img
                 className="h-16 object-cover"
@@ -76,20 +83,35 @@ export default function ConfirmRidePopup({
             </div>
           </div>
         </div>
-        <Button
-          label={"Confirm"}
-          onClick={() => {}}
-          className="bg-green-600 hover:bg-green-700 text-white -mb-4"
-        />
-        <Button
-          label={"Cancel"}
-          onClick={() => {
-            setConfirmRidePopupPanel(false)
-            setRidePopupPanel(false)
-          }}
-          type={"button"}
-          className="bg-red-600 hover:bg-gray-500"
-        />
+
+        <form className="w-full" onSubmit={submitHandler}>
+          <InputBox
+            placeholder={"Enter OTP"}
+            className="font-mono bg-[#eeee] p-4 text-lg"
+            type={"number"}
+            value={otp}
+            onChange={(e) => setOTP(e.target.value)}
+          />
+          <div className=" flex justify-between gap-3 items-center">
+            <div className=" w-full h-max ">
+              <Link
+                to="/captain-riding"
+                className="flex justify-center text-white rounded-md mt-6 p-2 text-lg font-medium focus:outline-none focus:ring focus:ring-green-600 hover:bg-green-600 shadow-md bg-green-500"
+              >
+                Confirm
+              </Link>
+            </div>
+            <Button
+              label={"Cancel"}
+              onClick={() => {
+                setConfirmRidePopupPanel(false);
+                setRidePopupPanel(false);
+              }}
+              type={"button"}
+              className="bg-red-600 hover:bg-gray-500 "
+            />
+          </div>
+        </form>
       </div>{" "}
     </div>
   );

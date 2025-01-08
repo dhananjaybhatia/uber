@@ -1,31 +1,27 @@
 /* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import Button from "./Button";
 
 import Heading from "./Heading";
 
-export default function RidePopup({
-  ridePopupPanelRef,
-  setRidePopupPanel,
-  setConfirmRidePopupPanel,
-}) {
+export default function FinishRide({ finishRidePanelRef, setFinishRidePanel }) {
   return (
     <div
-      ref={ridePopupPanelRef}
-      className="fixed z-10 w-full bg-white translate-y-full p-3 py-6 bottom-0"
+      ref={finishRidePanelRef}
+      className="fixed z-10 w-full bg-white h-screen translate-y-full p-3 py-6 bottom-0"
     >
       <ExpandMoreIcon
         onClick={() => {
-          setRidePopupPanel(false);
+          setFinishRidePanel(false);
         }}
         className="absolute top-2 right-2 text-gray-600"
       />
       <Heading
         className="font-semibold text-center mb-4"
-        label={"New Ride Available"}
+        label={"Finish Ride"}
       />
       <div className="flex flex-col gap-3 justify-between items-center p-3 ">
         <div className="w-full">
@@ -76,23 +72,15 @@ export default function RidePopup({
             </div>
           </div>
         </div>
-        <div className="w-full flex justify-between gap-3">
-          <Button
-            label={"Accept"}
-            type={"button"}
-            onClick={() => {
-              setConfirmRidePopupPanel(true);
-            }}
-            className="bg-green-600 hover:bg-green-700 text-white "
-          />
-          <Button
-            label={"Ignore"}
-            onClick={() => {
-              setRidePopupPanel(false);
-            }}
-            type={"button"}
-            className="bg-gray-300 !text-black hover:bg-gray-400"
-          />
+
+        <div className=" w-full h-max ">
+          <Link
+            to="/captain-home"
+            className="flex justify-center text-white rounded-md mt-6 p-2 text-lg font-medium focus:outline-none focus:ring focus:ring-green-600 hover:bg-green-600 shadow-md bg-green-500"
+          >
+            Finish Ride
+          </Link>
+          <p className="text-xs text-red-800 mt-2">(Click on finish ride if you have completed the payment.)</p>
         </div>
       </div>{" "}
     </div>
