@@ -8,6 +8,8 @@ export default function SelectRide({
   vehicePanelRef,
   setVehicePanelOpen,
   setConfirmRidePanel,
+  selectVehicle,
+  fare,
 }) {
   return (
     <div
@@ -22,6 +24,7 @@ export default function SelectRide({
       <div
         onClick={() => {
           setConfirmRidePanel(true);
+          selectVehicle("car");
         }}
         className="flex w-full p-2 border-2 mb-2 active:border-black border-gray-50 rounded-2xl items-center justify-between"
       >
@@ -42,11 +45,12 @@ export default function SelectRide({
             Affordable, compact ride
           </p>
         </div>
-        <h2 className="text-xl font-semibold">$16.50</h2>
+        <h2 className="text-xl font-semibold">${fare.car}</h2>
       </div>
       <div
         onClick={() => {
           setConfirmRidePanel(true);
+          selectVehicle("moto");
         }}
         className="flex w-full p-2 border-2 mb-2 active:border-black border-gray-50 rounded-2xl items-center justify-between"
       >
@@ -67,11 +71,12 @@ export default function SelectRide({
             Affordable, motorcycle ride
           </p>
         </div>
-        <h2 className="text-xl font-semibold">$10.50</h2>
+        <h2 className="text-xl font-semibold">${fare.moto}</h2>
       </div>
       <div
         onClick={() => {
           setConfirmRidePanel(true);
+          selectVehicle("auto");
         }}
         className="flex w-full p-2 border-2 mb-2 active:border-black border-gray-50 rounded-2xl items-center justify-between"
       >
@@ -92,7 +97,7 @@ export default function SelectRide({
             Affordable, tuk-tuk ride
           </p>
         </div>
-        <h2 className="text-xl font-semibold">$12.50</h2>
+        <h2 className="text-xl font-semibold">${fare.auto}</h2>
       </div>
     </div>
   );

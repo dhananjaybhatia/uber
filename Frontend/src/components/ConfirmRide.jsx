@@ -7,15 +7,22 @@ import Button from "./Button";
 
 import Heading from "./Heading";
 
-export default function SelectRide({
+export default function ConfirmRide({
   confirmRidePanelRef,
   setConfirmRidePanel,
-  setVehicleFoundPanel
+  setVehicleFoundPanel,
+  createYourRide,
+  vehicleType,
+  addPickup,
+  addDestination,
+  fare,
+
 }) {
+
   return (
     <div
       ref={confirmRidePanelRef}
-      className="fixed z-10 w-full translate-y-full bg-white  p-3 py-6 bottom-0"
+      className="fixed z-10 w-full translate-y-full bg-white  p-3 py-4 bottom-0"
     >
       <ExpandMoreIcon
         onClick={() => setConfirmRidePanel(false)} // Close the panel
@@ -37,9 +44,7 @@ export default function SelectRide({
             <MyLocationIcon className="text-gray-500" />
             <div className="">
               <h3 className="text-xl font-semibold">10/5 Holly Street</h3>
-              <p className="font-semibold text-gray-600">
-                Camberwell, Vic-3124
-              </p>
+              <p className="font-semibold text-gray-600">{addPickup}</p>
             </div>
           </div>
           <div>
@@ -48,9 +53,7 @@ export default function SelectRide({
               <LocationOnIcon className="text-gray-500" />
               <div className="">
                 <h3 className="text-xl font-semibold">95/10 Stanford Road</h3>
-                <p className="font-semibold text-gray-600">
-                  Hawthorn, Vic-3123
-                </p>
+                <p className="font-semibold text-gray-600">{addDestination}</p>
               </div>
             </div>
           </div>
@@ -59,7 +62,7 @@ export default function SelectRide({
             <div className="flex items-center gap-5 p-3 ">
               <AttachMoneyIcon className="text-gray-500 scale-110" />
               <div className="">
-                <h3 className="text-xl font-semibold">$16.53</h3>
+                <h3 className="text-xl font-semibold">${fare[vehicleType]}</h3>
                 <p className="font-semibold text-gray-600">
                   Online payment only.
                 </p>
@@ -67,13 +70,14 @@ export default function SelectRide({
             </div>
           </div>
         </div>
-        <Button
+        <Button className="bg-green-700 hover:bg-green-800 text-white"
           label={"Confirm"}
           onClick={() => {
             setVehicleFoundPanel(true);
             setConfirmRidePanel(false);
+            createYourRide();
           }}
-          className="bg-green-700 hover:bg-green-800 text-white"
+          
         />
       </div>{" "}
     </div>

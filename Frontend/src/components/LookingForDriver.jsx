@@ -9,11 +9,15 @@ import Heading from "./Heading";
 export default function LookingForDriver({
   vehicleFoundRef,
   setVehicleFoundPanel,
+  addPickup,
+  fare,
+  vehicleType,
+  addDestination,
 }) {
   return (
     <div
       ref={vehicleFoundRef}
-      className="fixed z-10 w-full translate-y-full bg-white  p-3 py-6 bottom-0"
+      className="fixed z-10 w-full translate-y-full bg-white p-3 py-6 bottom-0 overflow-hidden"
     >
       <ExpandMoreIcon
         onClick={() => setVehicleFoundPanel(false)} // Close the panel
@@ -35,9 +39,7 @@ export default function LookingForDriver({
             <MyLocationIcon className="text-gray-500" />
             <div className="">
               <h3 className="text-xl font-semibold">10/5 Holly Street</h3>
-              <p className="font-semibold text-gray-600">
-                Camberwell, Vic-3124
-              </p>
+              <p className="font-semibold text-gray-600">{addPickup}</p>
             </div>
           </div>
           <div>
@@ -46,9 +48,7 @@ export default function LookingForDriver({
               <LocationOnIcon className="text-gray-500" />
               <div className="">
                 <h3 className="text-xl font-semibold">95/10 Stanford Road</h3>
-                <p className="font-semibold text-gray-600">
-                  Hawthorn, Vic-3123
-                </p>
+                <p className="font-semibold text-gray-600">{addDestination}</p>
               </div>
             </div>
           </div>
@@ -57,7 +57,7 @@ export default function LookingForDriver({
             <div className="flex items-center gap-5 p-3 ">
               <AttachMoneyIcon className="text-gray-500 scale-110" />
               <div className="">
-                <h3 className="text-xl font-semibold">$16.53</h3>
+                <h3 className="text-xl font-semibold">${fare[vehicleType]}</h3>
                 <p className="font-semibold text-gray-600">
                   Online payment only.
                 </p>
