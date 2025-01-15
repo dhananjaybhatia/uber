@@ -1,8 +1,18 @@
+import { useContext } from "react";
+import { CaptainDataContext } from "../Context/CaptainContext";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import SpeedIcon from "@mui/icons-material/Speed";
 import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
 
 export default function CaptainDetail() {
+  const { captainData } = useContext(CaptainDataContext);
+  // Debugging: Log the entire context value
+  const contextValue = useContext(CaptainDataContext);
+  console.log("Context Value:", contextValue);
+
+  // Debugging: Log captainData
+  console.log("Captain Data:", captainData);
+
   return (
     <div>
       <div className="h-[40%] p-4">
@@ -14,7 +24,7 @@ export default function CaptainDetail() {
               alt=""
             />
             <div>
-              <h4 className="font-semibold text-gray-700">Micky Mouse</h4>
+              <h4 className="font-semibold text-gray-700 capitalize">{captainData.fullName.firstName + " " + captainData.fullName.lastName}</h4>
               <p className="leading-tight text-xs font-semibold text-gray-500">
                 Happy Driver
               </p>
@@ -44,5 +54,5 @@ export default function CaptainDetail() {
         </div>
       </div>
     </div>
-  )
+  );
 }

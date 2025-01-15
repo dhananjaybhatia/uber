@@ -26,9 +26,10 @@ export default function CaptainProtectedWrapper({ children }) {
             Authorization: `Bearer ${token}`,
           },
         });
+        console.log("API Response:", response.data); // Debugging: Log the response
 
         if (response.status === 200) {
-          setCaptainData(response.data.user); // Populate context with user data
+          setCaptainData(response.data.captain); // Populate context with user data
         } else {
           localStorage.removeItem("token");
           navigate("/captain-home");
